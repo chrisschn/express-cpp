@@ -41,7 +41,7 @@ void response::sendStatus(http_status status) {
 void response::sendFile(const boost::filesystem::path file) {
     
     auto filesize = boost::filesystem::file_size(file);
-    std::ifstream fileS(file.string());
+    std::ifstream fileS(file.string(), std::ios::in | std::ios::binary);
     std::vector<char> vec(filesize);
     fileS.read(vec.data(),filesize);   
     fileS.close();
